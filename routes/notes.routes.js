@@ -1,19 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const { notesService } = require('../services/index');
 
 router
-.route('/')
-.post()
-.get();
+  .route('/')
+  .get(notesService.getNotes)
+  .post(notesService.createNote);
 
 router
-.route('/stats')
-.get();
+  .route('/stats')
+  .get(notesService.getNotesStats);
 
 router
-.route('/:id')
-.delete()
-.patch()
-.get();
+  .route('/:id')
+  .get(notesService.getNote)
+  .patch(notesService.updateNote)
+  .delete(notesService.deleteNote);
 
 module.exports = router;
